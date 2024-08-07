@@ -13,4 +13,6 @@ Route::get('/', function () {
 // Route::get('hello', [HelloController::class, 'index']);
 // Route::get('world', [HelloController::class, 'world_message']);
 
-Route::resource('posts', PostController::class);
+// Route::resource('posts', PostController::class);
+
+Route::get('posts', [PostController::class, 'index']);
