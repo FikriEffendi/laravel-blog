@@ -16,17 +16,17 @@ class PostController extends Controller
         //     'posts' => "Ini postingan.",
         // ];
 
-        $view_data = [
-            'posts' => ['satu', 'dua', 'tiga'],
-        ];
-
         // $view_data = [
-        //     'posts' => [
-        //         //Title                 Content
-        //         ["Mengenal Laravel", "Ini adalah blog pengenalan Laravel"],
-        //         ["Tentang Codepolitan", "Ini adalah blog tentang Codepolitan"],
-        //     ]
+        //     'posts' => ['satu', 'dua', 'tiga'],
         // ];
+
+        $view_data = [
+            'posts' => [
+                //Title                 Content
+                ["Mengenal Laravel", "Ini adalah blog pengenalan Laravel"],
+                ["Tentang Codepolitan", "Ini adalah blog tentang Codepolitan"],
+            ]
+        ];
 
         return view('posts.index', $view_data);
     }
