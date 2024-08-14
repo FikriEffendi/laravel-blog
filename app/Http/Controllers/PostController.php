@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -11,14 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        // $view_data = [
-        //     'posts' => "Ini postingan.",
-        // ];
-
-        // $view_data = [
-        //     'posts' => ['satu', 'dua', 'tiga'],
-        // ];
+        $posts = Storage::get('posts.txt');
+        echo $posts;
+        exit;
 
         $view_data = [
             'posts' => [
