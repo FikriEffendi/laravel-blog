@@ -13,15 +13,10 @@ class PostController extends Controller
     public function index()
     {
         $posts = Storage::get('posts.txt');
-        echo $posts;
-        exit;
+        $posts = explode("\n", $posts);
 
         $view_data = [
-            'posts' => [
-                //Title                 Content
-                ["Mengenal Laravel", "Ini adalah blog pengenalan Laravel"],
-                ["Tentang Codepolitan", "Ini adalah blog tentang Codepolitan"],
-            ]
+            'posts' => $posts
         ];
 
         return view('posts.index', $view_data);
