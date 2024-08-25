@@ -43,7 +43,19 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $posts = Storage::get('posts.txt');
+        $posts = explode("\n", $posts);
+        $selected_post = array();
+        foreach ($posts as $post) {
+            $post = explode(",", $post);
+            if ($post[0] == $id) {
+                $selected_post = $post;
+            }
+        }
+        $view_data = [
+            'post' => $selected_post,
+        ];
+        return view('posts.show', $view_data);
     }
 
     /**
