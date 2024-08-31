@@ -12,6 +12,8 @@
 <body>
     <h1>Buat Postingan Baru</h1>
     <form action="{{url('posts')}}" method="post" class="form-control">
+        @csrf
+
         <div class="mb-3">
             <label for="title" class="form-label">judul</label>
             <input type="text" class="form-control" id="title" name="title">
