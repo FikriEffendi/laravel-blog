@@ -19,7 +19,7 @@
             <p>{{$post[2]}}</p>
         </article>
 
-        <a href="{{url('posts')}}">
+        <a href="{{url("posts")}}">
             < Kembali
                 </a>
     </div>
