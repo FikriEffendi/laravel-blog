@@ -51,6 +51,8 @@ class PostController extends Controller
         $new_post = implode(",", $new_post);
 
         array_push($posts, $new_post);
+        $posts = implode("\n", $posts);
+
         dd($posts);
     }
 
