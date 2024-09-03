@@ -53,7 +53,9 @@ class PostController extends Controller
         array_push($posts, $new_post);
         $posts = implode("\n", $posts);
 
-        dd($posts);
+        Storage::write('posts.txt', $posts);
+
+        return redirect('posts');
     }
 
     /**
