@@ -50,7 +50,8 @@ class PostController extends Controller
 
         $new_post = implode(",", $new_post);
 
-        dd($new_post);
+        array_push($posts, $new_post);
+        dd($posts);
     }
 
     /**
