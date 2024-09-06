@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -12,12 +13,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Storage::get('posts.txt');
-        $posts = explode("\n", $posts);
+        $posts = DB::table('posts')
+            ->select('id', 'title', 'content', 'created_at')
+            ->get();
 
         $view_data = [
             'posts' => $posts
         ];
+
 
         return view('posts.index', $view_data);
     }
@@ -38,22 +41,12 @@ class PostController extends Controller
         $title = $request->input('title');
         $content = $request->input('content');
 
-        $posts = Storage::get('posts.txt');
-        $posts = explode("\n", $posts);
-
-        $new_post = [
-            count($posts) + 1,
-            $title,
-            $content,
-            date('Y-m-d H:i:s')
-        ];
-
-        $new_post = implode(",", $new_post);
-
-        array_push($posts, $new_post);
-        $posts = implode("\n", $posts);
-
-        Storage::write('posts.txt', $posts);
+        DB::table('posts')->insert([
+            'title' => $title,
+            'content' => $content,
+            'created_at' => date('Y-m-d H-i-s'),
+            'updated_at' => date('Y-m-d H-i-s'),
+        ]);
 
         return redirect('posts');
     }
