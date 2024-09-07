@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = DB::table('posts')
-            ->select('id', 'title', 'content', 'created_at')
+            // ->select('id', 'title', 'content', 'created_at')
             ->get();
 
         $view_data = [
@@ -38,14 +38,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
+        $title = $request->title;
+        $content = $request->content;
 
         DB::table('posts')->insert([
             'title' => $title,
             'content' => $content,
-            'created_at' => date('Y-m-d H-i-s'),
-            'updated_at' => date('Y-m-d H-i-s'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return redirect('posts');
