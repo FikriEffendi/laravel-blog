@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+use function Laravel\Prompts\select;
+
 class PostController extends Controller
 {
     /**
@@ -56,17 +58,13 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $posts = Storage::get('posts.txt');
-        $posts = explode("\n", $posts);
-        $selected_post = array();
-        foreach ($posts as $post) {
-            $post = explode(",", $post);
-            if ($post[0] == $id) {
-                $selected_post = $post;
-            }
-        }
+        $posts = DB::table('posts')
+            // ->select('id', 'title', 'content', 'created_at')
+            ->where('id', '=', $id)
+            ->first();
+
         $view_data = [
-            'post' => $selected_post,
+            'post' => $posts,
         ];
         return view('posts.show', $view_data);
     }

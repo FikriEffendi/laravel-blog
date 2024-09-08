@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog| judul: {{$post[1]}}</title>
+    <title>Blog| judul: {{$post->title}}</title>
     <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/blog.css')}}">
     <script src="{{asset('bootstrap-5/js/bootstrap.bundle.min.js')}}"></script>
@@ -13,10 +13,10 @@
 <body>
     <div class="container">
         <article class="blog-post">
-            <h2 class="display-5 link-body-emphasis mb-1">{{$post[1]}}</h2>
-            <p class="blog-post-meta">{{date("D M Y H:i",strtotime($post[3]))}}</p>
+            <h2 class="display-5 link-body-emphasis mb-1">{{$post->title}}</h2>
+            <p class="blog-post-meta">{{date("D M Y H:i",strtotime($post->created_at))}}</p>
 
-            <p>{{$post[2]}}</p>
+            <p>{{$post->content}}</p>
         </article>
 
         <a href="{{url("posts")}}">
