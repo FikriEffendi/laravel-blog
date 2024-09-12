@@ -74,16 +74,21 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $posts = DB::table('posts')
+            ->where('id', '=', $id)
+            ->first();
+
+        $view_data = [
+            'post' => $posts,
+        ];
+
+        return view('posts.edit', $view_data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, string $id) {}
 
     /**
      * Remove the specified resource from storage.
