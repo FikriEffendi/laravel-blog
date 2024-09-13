@@ -88,7 +88,21 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {}
+    public function update(Request $request, string $id)
+    {
+        $title = $request->title;
+        $content = $request->content;
+
+        DB::table('posts')
+            ->where('id', $id)
+            ->update([
+                'title' => $title,
+                'content' => $content,
+                'updated_at' => now()
+            ]);
+
+        return redirect("posts/{$id}");
+    }
 
     /**
      * Remove the specified resource from storage.
