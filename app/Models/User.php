@@ -44,4 +44,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public $abc;
+
+    public function get_abc()
+    {
+        return $this->abc;
+    }
+
+    public static function return_sesuatu()
+    {
+        return $this->abc;
+    }
 }
