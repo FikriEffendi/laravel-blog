@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::active()->get();
+        $posts = Post::active()->get(); //jika kita ingin menampilkan soft deletes pake scope 'withTrashed()'
 
         $view_data = [
             'posts' => $posts
