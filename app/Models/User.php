@@ -45,7 +45,7 @@ class User extends Authenticatable
         ];
     }
 
-    public $abc;
+    public static $abc;
 
     public function get_abc()
     {
@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public static function return_sesuatu()
     {
-        return $this->abc;
+        return static::$abc;
     }
 }
