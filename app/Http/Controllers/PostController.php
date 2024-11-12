@@ -42,11 +42,11 @@ class PostController extends Controller
         $title = $request->title;
         $content = $request->content;
 
-        Post::insert([
+        Post::create([
             'title' => $title,
             'content' => $content,
-            'created_at' => now(),
-            'updated_at' => now(),
+            // 'created_at' => now(),
+            // 'updated_at' => now(),
         ]);
 
         return redirect('posts');
