@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog| judul: {{$post->title}}</title>
-    <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/blog.css')}}">
-    <script src="{{asset('bootstrap-5/js/bootstrap.bundle.min.js')}}"></script>
-</head>
+@section('title','judul: '.$post->title)
 
-<body>
+@section('content')
     <div class="container">
         <article class="blog-post">
             <h2 class="display-5 link-body-emphasis mb-1">{{$post->title}}</h2>
@@ -31,6 +23,4 @@
             < Kembali
                 </a>
     </div>
-</body>
-
-</html>
+@endsection

@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog| ubah postingan</title>
-    <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}">
-    <script src="{{asset('bootstrap-5/js/bootstrap.bundle.min.js')}}"></script>
-</head>
+@section('title','Edit konten')
 
-<body>
+@section('content')
     <h1>Ubah Postingan</h1>
     <form action="{{url("posts/$post->id")}}" method="post" class="form-control">
         @method('PATCH')
@@ -30,6 +23,4 @@
         @csrf
         <button type="submit" class="btn btn-danger">Hapus</button>
     </form>
-</body>
-
-</html>
+@endsection
