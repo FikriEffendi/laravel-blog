@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +17,11 @@ class PostController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         $posts = Post::active()->get(); //jika kita ingin menampilkan soft deletes pake scope 'withTrashed()'
 
         $view_data = [
@@ -31,6 +37,11 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         return view('posts.create');
     }
 
@@ -39,6 +50,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         $title = $request->title;
         $content = $request->content;
 
@@ -57,6 +73,11 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         $posts = Post::with('comments')
             // ->select('id', 'title', 'content', 'created_at')
             ->where('id', $id) //where('id', '=', $id)
@@ -75,6 +96,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         $posts = Post::where('id', $id)->first();
 
         $view_data = [
@@ -89,6 +115,11 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         $title = $request->title;
         $content = $request->content;
 
@@ -107,6 +138,11 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
+        if (!Auth::check()) {
+            # code...
+            return redirect('login');
+        }
+
         Post::where('id', $id)
             ->delete();
 
