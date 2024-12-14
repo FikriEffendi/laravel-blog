@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BlogPosted;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use function Laravel\Prompts\select;
@@ -58,12 +60,14 @@ class PostController extends Controller
         $title = $request->title;
         $content = $request->content;
 
-        Post::create([
+        $post = Post::create([
             'title' => $title,
             'content' => $content,
             // 'created_at' => now(),
             // 'updated_at' => now(),
         ]);
+
+        Mail::to(Auth::user()->email)->send(new BlogPosted($post));
 
         return redirect('posts');
     }
